@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCGD Career Guidance Assessment Tool — Grade 9 & 10</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8DQRKJ1F54"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8DQRKJ1F54');</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0F2D5E;--navy-mid:#1B3A6B;--navy-light:#2B5BA8;
+  --sky:#4FCAF6;--sky-pale:#EAF8FE;--sky-mid:#82D9F9;
+  --yellow:#FFD700;--yellow-pale:#FFFBE6;
+  --gray-bg:#F0F4F8;--gray-100:#F7F9FC;--gray-200:#EEF2F7;--gray-border:#DDE2EA;
+  --gray-text:#5A6478;--gray-muted:#8896A9;
+  --white:#FFFFFF;--text:#0F1923;--text2:#2C3E50;
+  --green:#1A7A4A;--green-light:#E3F5EC;
+  --red:#C0392B;--red-light:#FDE8E8;
+  --radius:16px;--radius-sm:10px;--radius-xs:7px;
+  --shadow:0 2px 12px rgba(15,25,35,.07);
+  --shadow-md:0 4px 24px rgba(15,25,35,.10);
+  --shadow-lg:0 12px 48px rgba(15,25,35,.15);
+  --transition:all .22s cubic-bezier(.4,0,.2,1);
+}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--gray-bg);color:var(--text);font-size:15px;min-height:100vh;-webkit-font-smoothing:antialiased}
+.hdr{background:var(--navy);position:relative;overflow:hidden}
+.hdr::before{content:"";position:absolute;top:-60px;right:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(79,202,246,.18) 0%,transparent 70%);pointer-events:none}
+.hdr-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;flex-wrap:wrap;gap:14px;max-width:900px;margin:0 auto;position:relative;z-index:1}
+.hdr-logo img{height:56px;object-fit:contain;display:block;filter:drop-shadow(0 2px 8px rgba(0,0,0,.2))}
+.hdr-right{text-align:right}
+.tool-name{font-size:15px;font-weight:800;color:var(--yellow);display:block;letter-spacing:-.01em}
+.tool-sub{font-size:12px;color:rgba(255,255,255,.85);display:block;margin-top:3px;font-weight:400}
+.tagline{font-size:11px;color:var(--sky-mid);font-style:italic;display:block;margin-top:4px;letter-spacing:.05em}
+.hdr-bar{height:4px;background:linear-gradient(90deg,var(--navy-mid),var(--sky),var(--yellow))}
+.page{max-width:820px;margin:0 auto;padding:32px 18px 80px}
+.step{display:none}.step.active{display:block}
+.step-indicator{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:28px}
+.si-item{display:flex;align-items:center;gap:0}
+.si-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;transition:var(--transition);flex-shrink:0}
+.si-dot.done{background:var(--sky);color:var(--navy)}
+.si-dot.active{background:var(--navy-mid);color:white;box-shadow:0 0 0 4px rgba(27,58,107,.2)}
+.si-dot.pending{background:var(--gray-200);color:var(--gray-muted)}
+.si-line{width:40px;height:2px;background:var(--gray-200);transition:var(--transition)}
+.si-line.done{background:var(--sky)}
+.si-label{font-size:10px;font-weight:600;text-align:center;margin-top:4px;color:var(--gray-muted);letter-spacing:.04em;text-transform:uppercase;width:60px;margin-left:-14px}
+.card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:28px 32px;margin-bottom:18px;border:1px solid rgba(0,0,0,.04)}
+.card-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--sky-dark,#1B7FA8);margin-bottom:10px}
+.card-title{font-family:'DM Serif Display',serif;font-size:26px;color:var(--navy);margin-bottom:8px;line-height:1.2}
+.card-sub{font-size:14px;color:var(--gray-text);line-height:1.75;margin-bottom:20px}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,#1B5FA8 100%);border-radius:var(--radius);padding:36px;margin-bottom:20px;color:white;position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
+.hero-deco1{position:absolute;top:-50px;right:-50px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(79,202,246,.2) 0%,transparent 70%)}
+.hero-deco2{position:absolute;bottom:-40px;left:-30px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(255,215,0,.12) 0%,transparent 70%)}
+.hero-content{position:relative;z-index:1}
+.hero-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--yellow);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.hero-eyebrow::before{content:"";width:24px;height:2px;background:var(--yellow);border-radius:1px}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(26px,5vw,40px);line-height:1.15;margin-bottom:14px;color:white}
+.hero p{font-size:14px;line-height:1.85;color:rgba(255,255,255,.88);max-width:560px}
+.hero-badges{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.hero-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,.85);font-weight:500}
+.riasec-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 22px}
+.rcard{border-radius:12px;overflow:hidden;border:1px solid var(--gray-border);box-shadow:var(--shadow);transition:var(--transition)}
+.rcard:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.rcard-hdr{padding:13px 16px;display:flex;align-items:center;gap:12px}
+.rcard-letter{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.22);color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0}
+.rcard-name{color:white;font-weight:700;font-size:14px;line-height:1.2}
+.rcard-sub{color:rgba(255,255,255,.72);font-size:11px;font-weight:500;margin-top:1px}
+.rcard-body{background:var(--gray-100);padding:12px 16px;font-size:13px;color:var(--gray-text);line-height:1.65}
+.rcard-ex{color:var(--navy-mid);font-weight:600;margin-top:5px;font-size:12px}
+.why{background:linear-gradient(135deg,var(--yellow-pale),#FFFDF5);border-left:4px solid #B8960C;border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:18px 20px;margin:20px 0;font-size:13px;line-height:1.85;color:var(--text2);box-shadow:var(--shadow)}
+.why-title{font-weight:700;font-size:14px;color:var(--navy);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.consent-hero{background:linear-gradient(135deg,#0F2D5E 0%,#1B4F8A 100%);border-radius:var(--radius);padding:28px 32px;margin-bottom:20px;color:white;position:relative;overflow:hidden}
+.consent-hero h2{font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:8px;color:white}
+.consent-section{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin-bottom:16px;border:1px solid rgba(0,0,0,.04)}
+.consent-section-hdr{padding:16px 24px;background:var(--gray-100);border-bottom:1px solid var(--gray-border);display:flex;align-items:center;gap:10px}
+.cs-num{width:26px;height:26px;border-radius:50%;background:var(--navy-mid);color:white;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cs-title{font-size:14px;font-weight:700;color:var(--navy)}
+.consent-body{padding:20px 24px}
+.consent-body p{font-size:13px;color:var(--text2);line-height:1.85;margin-bottom:12px}
+.consent-points{list-style:none;display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.consent-points li{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text2);line-height:1.6}
+.consent-points li::before{content:"✓";color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px}
+.consent-check-row{display:flex;align-items:flex-start;gap:14px;padding:16px 24px;background:var(--green-light);border-top:1px solid rgba(26,122,74,.15);cursor:pointer;transition:var(--transition)}
+.consent-checkbox{width:22px;height:22px;border-radius:5px;border:2px solid var(--green);background:white;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:var(--transition);cursor:pointer}
+.consent-checkbox.checked{background:var(--green);border-color:var(--green)}
+.consent-checkbox.checked::after{content:"✓";color:white;font-size:13px;font-weight:700}
+.consent-check-label{font-size:13px;color:var(--text2);line-height:1.7;font-weight:500}
+.consent-warn{display:none;margin-top:12px;padding:10px 14px;background:var(--red-light);border-radius:var(--radius-xs);border-left:3px solid var(--red);font-size:13px;color:#7B1818}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.fg.t3{grid-template-columns:1fr 1fr 1fr}
+.fl label{font-size:11px;font-weight:700;color:var(--navy-mid);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.06em}
+.fl label .req{color:var(--red);margin-left:2px}
+.fl input,.fl select{width:100%;padding:11px 14px;border:1.5px solid var(--gray-border);border-radius:var(--radius-xs);font-size:14px;color:var(--text);background:var(--white);outline:none;transition:var(--transition);font-family:'Inter',sans-serif}
+.fl input:focus,.fl select:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(79,202,246,.15)}
+.fl select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235A6478' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.mode-toggle{display:flex;gap:10px;margin-bottom:20px;background:var(--gray-200);padding:4px;border-radius:var(--radius-sm)}
+.mode-btn{flex:1;padding:10px 14px;border:none;border-radius:var(--radius-xs);font-size:13px;font-weight:600;cursor:pointer;color:var(--gray-text);transition:var(--transition);background:transparent}
+.mode-btn.on{background:var(--white);color:var(--navy);box-shadow:var(--shadow-md)}
+.form-section-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gray-muted);margin:20px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--gray-border)}
+.prog-wrap{margin-bottom:24px}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.prog-title{font-size:14px;font-weight:600;color:var(--navy)}
+.prog-count{font-size:13px;color:var(--gray-text);font-weight:500}
+.prog-bar{height:8px;background:var(--gray-200);border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--navy-mid),var(--sky));border-radius:4px;transition:width .4s cubic-bezier(.4,0,.2,1)}
+.prog-pct{font-size:12px;color:#1B7FA8;font-weight:600;margin-top:5px;text-align:right}
+.items-intro{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 26px;margin-bottom:18px;border-left:4px solid var(--navy-mid)}
+.items-intro .ii-title{font-size:17px;font-weight:700;color:var(--navy);margin-bottom:5px}
+.items-intro .ii-sub{font-size:13px;color:var(--gray-text);line-height:1.7}
+.icard{border:1.5px solid var(--gray-border);border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:10px;display:flex;align-items:flex-start;gap:14px;transition:var(--transition);background:var(--white);box-shadow:var(--shadow)}
+.icard:hover{border-color:var(--sky);box-shadow:var(--shadow-md)}
+.icard.done{border-color:var(--sky);background:var(--sky-pale)}
+.icard.missed{border-color:var(--red)!important;background:var(--red-light)!important}
+.inum{font-size:11px;font-weight:700;color:var(--gray-muted);min-width:28px;padding-top:3px;flex-shrink:0}
+.itext{font-size:14px;line-height:1.7;flex:1;color:var(--text2)}
+.ynw{display:flex;gap:8px;flex-shrink:0}
+.yn{width:54px;height:38px;border-radius:var(--radius-xs);border:1.5px solid var(--gray-border);font-size:12px;font-weight:700;cursor:pointer;background:var(--white);color:var(--gray-text);transition:var(--transition);letter-spacing:.06em}
+.yn:hover{border-color:var(--navy-mid);color:var(--navy)}
+.yn.yes.on{background:var(--green);border-color:var(--green);color:white;box-shadow:0 2px 8px rgba(26,122,74,.3)}
+.yn.no.on{background:var(--red);border-color:var(--red);color:white;box-shadow:0 2px 8px rgba(192,57,43,.3)}
+.btn{padding:12px 26px;border-radius:var(--radius-xs);border:1.5px solid var(--gray-border);font-size:14px;font-weight:600;cursor:pointer;background:var(--white);color:var(--text);transition:var(--transition);font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:8px}
+.btn:hover{border-color:var(--navy-mid);color:var(--navy)}
+.btn.navy{background:var(--navy-mid);border-color:var(--navy-mid);color:white;box-shadow:0 4px 14px rgba(27,58,107,.3)}
+.btn.navy:hover{background:var(--navy);box-shadow:0 6px 20px rgba(27,58,107,.4)}
+.btn.sky{background:var(--sky);border-color:var(--sky);color:var(--navy);font-weight:700;box-shadow:0 4px 14px rgba(79,202,246,.35)}
+.btn.sky:hover{background:var(--sky-mid)}
+.btn:disabled{opacity:.38;cursor:default;box-shadow:none}
+.btnrow{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;align-items:center}
+.warn-msg{display:none;margin-top:12px;padding:12px 16px;background:var(--red-light);border-radius:var(--radius-xs);border-left:4px solid var(--red);font-size:13px;color:#7B1818;line-height:1.7}
+.res-cover{background:var(--navy);border-radius:var(--radius);overflow:hidden;margin-bottom:24px;box-shadow:var(--shadow-lg);position:relative}
+.res-cover-deco{position:absolute;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(79,202,246,.2) 0%,transparent 70%)}
+.res-cover-deco2{position:absolute;bottom:-50px;left:-30px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,215,0,.1) 0%,transparent 70%)}
+.res-cover-top{display:flex;justify-content:space-between;align-items:center;padding:20px 28px;border-bottom:1px solid rgba(255,255,255,.08);position:relative;z-index:1}
+.res-cover-brand{display:flex;align-items:center;gap:10px}
+.res-cover-brand-dot{width:36px;height:36px;background:var(--sky);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:var(--navy)}
+.res-cover-brand-text{color:white;font-size:13px;font-weight:600;opacity:.9}
+.res-cover-badge{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:6px 14px;color:rgba(255,255,255,.7);font-size:12px}
+.res-cover-body{padding:32px 28px 28px;position:relative;z-index:1}
+.res-cover-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--sky);margin-bottom:12px}
+.res-learner-name{font-family:'DM Serif Display',serif;font-size:clamp(28px,6vw,48px);color:white;line-height:1.1;margin-bottom:4px}
+.res-learner-sub{font-size:14px;color:rgba(255,255,255,.55);font-weight:300;margin-bottom:24px}
+.res-code-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.res-code-pill{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;width:68px;height:68px;border-radius:14px;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+.res-code-letter{font-size:28px;font-weight:800;color:white;line-height:1}
+.res-code-label{font-size:9px;font-weight:700;color:rgba(255,255,255,.75);text-transform:uppercase;letter-spacing:.04em}
+.res-meta-row{display:flex;gap:24px;flex-wrap:wrap}
+.res-meta-item{display:flex;flex-direction:column;gap:2px}
+.res-meta-label{font-size:10px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.08em}
+.res-meta-value{font-size:13px;font-weight:500;color:rgba(255,255,255,.8)}
+.res-cover-bottom{padding:16px 28px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
+.res-cover-bottom p{color:rgba(255,255,255,.3);font-size:12px}
+.sec-hdr{display:flex;align-items:center;gap:14px;margin-bottom:20px;margin-top:32px}
+.sec-num{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:white;flex-shrink:0;box-shadow:var(--shadow-md)}
+.sec-title{font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy)}
+.sec-sub{font-size:13px;color:var(--gray-text);margin-top:2px}
+.score-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:24px 28px;margin-bottom:18px}
+.top3-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px}
+.top3-card{background:var(--white);border-radius:var(--radius-sm);box-shadow:var(--shadow-md);padding:18px;display:flex;flex-direction:column;gap:10px;transition:var(--transition)}
+.top3-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.top3-letter{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:white;flex-shrink:0}
+.top3-score{font-size:28px;font-weight:800;line-height:1}
+.top3-score span{font-size:14px;font-weight:400;color:var(--gray-muted)}
+.bar-track{height:8px;background:var(--gray-200);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;transition:width 1s cubic-bezier(.4,0,.2,1)}
+.factor-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--gray-200)}
+.factor-row:last-child{border-bottom:none}
+.factor-dot{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:white;flex-shrink:0}
+.factor-name{font-size:13px;font-weight:600;width:120px;flex-shrink:0}
+.factor-bar{flex:1;height:8px;background:var(--gray-200);border-radius:4px;overflow:hidden}
+.factor-bar-fill{height:100%;border-radius:4px;transition:width 1s cubic-bezier(.4,0,.2,1)}
+.factor-score{font-size:15px;font-weight:700;min-width:30px;text-align:right}
+.top-badge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px;min-width:44px;text-align:center}
+.comp-hero{background:linear-gradient(135deg,#0F2D5E 0%,#1B4F8A 100%);border-radius:var(--radius);padding:24px 28px;margin-bottom:18px;color:white;box-shadow:var(--shadow-lg)}
+.comp-hero h3{font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:8px}
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:24px}
+.comp-card{background:var(--white);border-radius:var(--radius-sm);padding:20px;box-shadow:var(--shadow-md);border-top:3px solid var(--navy-mid);transition:var(--transition)}
+.comp-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.comp-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.comp-item{display:flex;align-items:flex-start;gap:9px;margin-bottom:8px;font-size:13px;color:var(--text2);line-height:1.55}
+.comp-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.pw-card{border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow-md);transition:var(--transition)}
+.pw-card:hover{box-shadow:var(--shadow-lg)}
+.pw-card-hdr{padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pw-rank-badge{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:5px 14px;border-radius:20px}
+.pw-score{font-size:13px;font-weight:600;opacity:.8}
+.pw-card-body{background:var(--white);padding:20px 22px}
+.pw-title{font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:4px}
+.pw-desc{font-size:13px;color:var(--gray-text);margin-bottom:14px;line-height:1.6}
+.pw-track{background:var(--gray-100);border-radius:var(--radius-xs);padding:12px 16px;margin-bottom:10px;border-left:3px solid var(--gray-border)}
+.pw-track-name{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-muted);margin-bottom:5px}
+.pw-track-subjects{font-size:13px;color:var(--text2);line-height:1.7}
+.pw-careers{font-size:12px;color:var(--gray-text);margin-top:12px;padding-top:12px;border-top:1px solid var(--gray-200)}
+.subj-sec-title{font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy);margin:28px 0 6px}
+.subj-sec-sub{font-size:13px;color:var(--gray-text);line-height:1.7;margin-bottom:20px}
+.subj-tabs{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 20px}
+.subj-tab{padding:10px 18px;border-radius:var(--radius-xs);border:2px solid var(--gray-border);background:var(--white);font-size:13px;font-weight:600;cursor:pointer;color:var(--gray-text);transition:var(--transition);font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:6px}
+.subj-tab:hover{border-color:var(--navy-mid);color:var(--navy)}
+.subj-tab.active{box-shadow:var(--shadow-md)}
+.subj-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin-bottom:16px;transition:var(--transition)}
+.subj-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.subj-hdr{padding:16px 22px;display:flex;align-items:center;gap:14px}
+.subj-emoji{font-size:24px;width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.subj-title-text{font-size:17px;font-weight:700;color:white;line-height:1.2}
+.subj-track-text{font-size:11px;color:rgba(255,255,255,.72);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
+.cert{border:2.5px solid var(--navy-mid);border-radius:var(--radius);padding:32px;margin:24px 0;text-align:center;background:var(--white);box-shadow:var(--shadow-md)}
+.cert-stripe{height:5px;background:linear-gradient(90deg,var(--navy-mid),var(--sky),var(--yellow));border-radius:3px;margin:18px 0}
+.cert-eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#1B7FA8;font-weight:700;margin-bottom:10px}
+.cert-h{font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin-bottom:6px}
+.cert-name{font-family:'DM Serif Display',serif;font-size:clamp(24px,5vw,34px);color:var(--navy);margin:12px 0;padding-bottom:14px;border-bottom:2px solid var(--gray-200)}
+.cert-codes{display:flex;gap:12px;justify-content:center;margin:14px 0}
+.cert-pathway{font-size:16px;font-weight:700;color:var(--navy);margin:8px 0}
+.cert-note{font-size:11px;color:var(--gray-text);margin-top:10px;line-height:1.8}
+.book-hero{background:linear-gradient(135deg,var(--navy) 0%,#1B4F8A 50%,var(--navy-light) 100%);border-radius:var(--radius);padding:32px 36px;margin:24px 0;color:white;text-align:center;position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
+.book-hero::before{content:"";position:absolute;top:-50px;right:-50px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(79,202,246,.2) 0%,transparent 70%)}
+.book-hero-content{position:relative;z-index:1}
+.book-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--yellow);margin-bottom:10px}
+.book-hero h3{font-family:'DM Serif Display',serif;font-size:24px;margin-bottom:12px;color:white}
+.book-hero p{font-size:14px;color:rgba(255,255,255,.88);line-height:1.85;margin-bottom:22px;max-width:480px;margin-left:auto;margin-right:auto}
+.book-feats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+.book-feat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:14px 18px;min-width:130px;text-align:center;transition:var(--transition)}
+.book-feat-icon{font-size:22px;margin-bottom:6px}
+.book-feat-title{font-weight:700;color:var(--yellow);font-size:13px}
+.book-feat-desc{color:rgba(255,255,255,.65);font-size:11px;margin-top:3px;line-height:1.5}
+.book-cta{display:inline-flex;align-items:center;gap:10px;background:var(--yellow);color:var(--navy);font-weight:700;font-size:15px;padding:14px 36px;border-radius:var(--radius-xs);text-decoration:none;margin-bottom:12px;transition:var(--transition);box-shadow:0 4px 20px rgba(255,215,0,.4)}
+.book-cta:hover{background:#FFDF00;box-shadow:0 8px 28px rgba(255,215,0,.5);transform:translateY(-2px)}
+.book-contacts{font-size:12px;color:rgba(255,255,255,.55);margin-top:6px}
+.book-contacts a{color:var(--sky-mid);text-decoration:none;font-weight:500}
+.msg-box{background:var(--sky-pale);border-radius:var(--radius-sm);padding:20px 24px;margin:18px 0;border-left:5px solid var(--sky);box-shadow:var(--shadow)}
+.msg-box strong{display:block;font-size:14px;color:var(--navy);margin-bottom:8px;font-weight:700}
+.msg-box p{font-size:13px;color:var(--text2);line-height:1.85}
+.msg-box a{color:var(--navy-mid);font-weight:700;text-decoration:underline}
+.disclaimer{background:var(--gray-100);border-radius:var(--radius-sm);padding:16px 20px;font-size:12px;color:var(--gray-text);line-height:1.85;border:1px solid var(--gray-border);margin-top:16px}
+.ftr-bar{height:4px;background:linear-gradient(90deg,var(--navy),var(--sky),var(--yellow))}
+.ftr{background:var(--navy);padding:28px 20px;text-align:center}
+.ftr-name{color:var(--yellow);font-weight:700;font-size:15px;margin-bottom:4px;font-family:'DM Serif Display',serif}
+.ftr-tag{color:var(--sky-mid);font-style:italic;font-size:12px;margin-bottom:10px}
+.ftr-links{font-size:13px;color:rgba(255,255,255,.75);line-height:2.2}
+.ftr-links a{color:var(--sky-mid);text-decoration:none;font-weight:600}
+.ftr-links a:hover{color:var(--yellow)}
+.ftr-copy{font-size:11px;color:rgba(255,255,255,.35);margin-top:8px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp .5s ease both}
+.delay-1{animation-delay:.08s}.delay-2{animation-delay:.16s}.delay-3{animation-delay:.24s}
+@media print{.hdr,.ftr,.ftr-bar,.btnrow,.prog-wrap,.items-intro,#s-intro,#s-consent,#s-profile,#s-items{display:none!important}#s-results{display:block!important}body{background:white}.pw-card,.cert,.subj-card,.res-cover{break-inside:avoid}}
+@media(max-width:580px){.hdr-inner{flex-direction:column;align-items:flex-start;padding:16px 20px}.hdr-right{text-align:left}.page{padding:20px 14px 60px}.fg,.fg.t3{grid-template-columns:1fr}.riasec-grid{grid-template-columns:1fr}.top3-grid{grid-template-columns:1fr}.comp-grid{grid-template-columns:1fr}.book-feats{flex-direction:column;align-items:center}.res-cover-body{padding:24px 20px}.res-cover-top,.res-cover-bottom{padding:16px 20px}.si-label{display:none}.si-line{width:24px}}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="hdr-inner">
+    <div class="hdr-logo"><img src="data:image/png;base64,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" alt="CCGD Kenya"></div>
+    <div class="hdr-right">
+      <span class="tool-name">Career Guidance Assessment Tool</span>
+      <span class="tool-sub">Grade 9 &amp; 10 &nbsp;|&nbsp; CBE Senior School Kenya</span>
+      <span class="tagline">One Purpose. One Mission. One Dream.</span>
+    </div>
+  </div>
+  <div class="hdr-bar"></div>
+</header>
+<div class="page">
+
+<div class="page"><div class="step-indicator" id="step-ind"><div class="si-item"><div style="display:flex;flex-direction:column;align-items:center"><div class="si-dot active" id="si1">1</div><div class="si-label" style="color:var(--navy-mid)">About</div></div><div class="si-line" id="sl1"></div></div><div class="si-item"><div style="display:flex;flex-direction:column;align-items:center"><div class="si-dot pending" id="si2">2</div><div class="si-label">Consent</div></div><div class="si-line" id="sl2"></div></div><div class="si-item"><div style="display:flex;flex-direction:column;align-items:center"><div class="si-dot pending" id="si3">3</div><div class="si-label">Profile</div></div><div class="si-line" id="sl3"></div></div><div class="si-item"><div style="display:flex;flex-direction:column;align-items:center"><div class="si-dot pending" id="si4">4</div><div class="si-label">Inventory</div></div><div class="si-line" id="sl4"></div></div><div class="si-item"><div style="display:flex;flex-direction:column;align-items:center"><div class="si-dot pending" id="si5">5</div><div class="si-label">Results</div></div></div></div><div class="step active" id="s-intro"><div class="hero fade-up"><div class="hero-deco1"></div><div class="hero-deco2"></div><div class="hero-content"><div class="hero-eyebrow">College of Career Guidance &amp; Development</div><h1>What Am I<br>Interested In?</h1><p>Welcome, young learner. At CCGD, we believe every young Kenyan has unique strengths and deserves a future that truly fits them. This inventory will help you understand your natural interests and discover which CBE Senior School pathway and subjects align best with who you are.</p><div class="hero-badges"><span class="hero-badge">&#128336; 10–15 minutes</span><span class="hero-badge">&#128100; Grade 9 &amp; 10</span><span class="hero-badge">&#128274; Confidential</span><span class="hero-badge">&#127894; Kenya CBE 2026</span></div></div></div><div class="card fade-up delay-1"><div class="card-eyebrow">The RIASEC Model</div><div class="card-title">Understanding Your Interests</div><div class="card-sub">Researcher John Holland discovered that people's interests fall into six groups. Most people are a mix of two or three — and every group leads to important and rewarding careers in Kenya and beyond.</div><div class="riasec-grid"><div class="rcard"><div class="rcard-hdr" style="background:linear-gradient(135deg,#1B3A6B,#2B5BA8)"><span class="rcard-letter">R</span><div><div class="rcard-name">Realistic</div><div class="rcard-sub">Practical</div></div></div><div class="rcard-body">&#9997;&#65039; Tools, machines, farming, building, outdoors<div class="rcard-ex">e.g. Fixing a motorbike, wiring a house, growing crops</div></div></div><div class="rcard"><div class="rcard-hdr" style="background:linear-gradient(135deg,#2B5BA8,#1B7FA8)"><span class="rcard-letter">I</span><div><div class="rcard-name">Investigative</div><div class="rcard-sub">Thinking</div></div></div><div class="rcard-body">&#128300; Science, research, experiments, analysis<div class="rcard-ex">e.g. Lab experiments, studying diseases, solving puzzles</div></div></div><div class="rcard"><div class="rcard-hdr" style="background:linear-gradient(135deg,#7B2C2C,#A33B3B)"><span class="rcard-letter">A</span><div><div class="rcard-name">Artistic</div><div class="rcard-sub">Creative</div></div></div><div class="rcard-body">&#127912; Drawing, music, drama, writing, performing<div class="rcard-ex">e.g. Singing in choir, painting murals, acting in a play</div></div></div><div class="rcard"><div class="rcard-hdr" style="background:linear-gradient(135deg,#1A7A4A,#2A9A5A)"><span class="rcard-letter">S</span><div><div class="rcard-name">Social</div><div class="rcard-sub">Helping</div></div></div><div class="rcard-body">&#129309; Teaching, counselling, community work, teamwork<div class="rcard-ex">e.g. Peer counselling, helping neighbours, leading a clean-up</div></div></div><div class="rcard"><div class="rcard-hdr" style="background:linear-gradient(135deg,#1B7FA8,#2B9FD8)"><span class="rcard-letter">E</span><div><div class="rcard-name">Enterprising</div><div class="rcard-sub">Leading</div></div></div><div class="rcard-body">&#128081; Leading groups, debating, starting businesses<div class="rcard-ex">e.g. Class captain, running a tuck shop, winning a debate</div></div></div><div class="rcard"><div class="rcard-hdr" style="background:linear-gradient(135deg,#3D4A5C,#5A6478)"><span class="rcard-letter">C</span><div><div class="rcard-name">Conventional</div><div class="rcard-sub">Organised</div></div></div><div class="rcard-body">&#128196; Records, numbers, following steps, keeping order<div class="rcard-ex">e.g. Managing accounts, keeping a register, organising files</div></div></div></div><div class="why"><div class="why-title">&#128161; Why does this matter for you?</div>
+ In Grade 9 and 10 you have a chance to choose a CBE pathway &mdash; STEM, Social Sciences, or Arts and Sports Science. That choice shapes your Senior School subjects and opens the door to your future career. This inventory is one step to help you choose wisely. Use it together with guidance from your teacher or CCGD counsellor.
+ </div><button class="btn navy" onclick="goStep('s-consent');updateIndicator(2)">Begin &nbsp;&rarr;</button></div></div><div class="step" id="s-consent"><div class="consent-hero fade-up"><div style="position:absolute;top:-30px;right:-30px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(79,202,246,.15) 0%,transparent 70%)"></div><div style="position:relative;z-index:1"><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--yellow);margin-bottom:10px">Before You Begin</div><h2>Informed Consent</h2><p style="margin-top:8px">Please read the information below carefully before agreeing to take part. This inventory is voluntary and your information will be kept private.</p></div></div><div class="consent-section fade-up delay-1"><div class="consent-section-hdr"><div class="cs-num">1</div><div class="cs-title">What is this assessment?</div></div><div class="consent-body"><p>This is the <strong>CCGD Career Guidance Assessment Tool</strong> — a 42-item interest inventory based on John Holland's RIASEC model, adapted for Kenya's CBE Senior School framework. It is designed to help Grade 9 and 10 learners understand their natural interests and make informed decisions about their Senior School pathway and subject selection.</p><p>This is not a test. There are no right or wrong answers. Your results reflect your interests at this point in time and are meant to guide a conversation — not to make a final decision for you.</p></div></div><div class="consent-section fade-up delay-2"><div class="consent-section-hdr"><div class="cs-num">2</div><div class="cs-title">What will happen to my information?</div></div><div class="consent-body"><ul class="consent-points"><li>Your name, school, and responses will be used only to generate your personalised results report.</li><li>Your information will not be shared with other learners, posted publicly, or used for commercial purposes.</li><li>CCGD Kenya may use anonymised, aggregated data (with no names attached) for research and curriculum development purposes.</li><li>Your results may be shared with your teacher or school counsellor to support your pathway guidance conversation.</li><li>You may request to see or delete your information at any time by contacting CCGD.</li></ul></div></div><div class="consent-section fade-up delay-3"><div class="consent-section-hdr"><div class="cs-num">3</div><div class="cs-title">Your rights</div></div><div class="consent-body"><ul class="consent-points"><li>Participation is completely voluntary. You are free to stop at any time without any consequence.</li><li>You do not have to answer any question that makes you uncomfortable.</li><li>Your pathway recommendation is a guide, not a final placement. You retain the right to choose your own pathway in discussion with your parents, teachers, and counsellor.</li><li>If you have any questions about this assessment, contact CCGD at info@careerguidancecollege.com or call +254 743 822 925.</li></ul></div><div class="consent-check-row" onclick="toggleConsent()" id="consent-row"><div class="consent-checkbox" id="consent-box"></div><div class="consent-check-label"><strong>I have read and understood the information above.</strong> I agree to take part in this assessment voluntarily. I understand my results are confidential and will be used to help me make informed pathway choices in line with Kenya's CBE framework.
+ </div></div></div><div class="consent-warn" id="consent-warn">&#9888;&#65039; Please tick the consent box above before continuing.</div><div class="btnrow"><button class="btn" onclick="goStep('s-intro');updateIndicator(1)">&larr; Back</button><button class="btn navy" onclick="proceedFromConsent()">I agree — continue &nbsp;&rarr;</button></div></div><div class="step" id="s-profile"><div class="card fade-up"><div class="card-eyebrow">Step 3 of 5</div><div class="card-title">About You</div><div class="card-sub">Please fill in your details. All information is confidential and used only to personalise your results report.</div><div class="form-section-label">How are you completing this?</div><div class="mode-toggle"><button class="mode-btn on" id="m-school" onclick="setMode('school')">&#127979; I am a school learner</button><button class="mode-btn" id="m-public" onclick="setMode('public')">&#127968; I am not currently in school</button></div><div class="form-section-label">Personal details</div><div class="fg t3"><div class="fl"><label>First name <span class="req">*</span></label><input id="fn" type="text" placeholder="e.g. Amina"></div><div class="fl"><label>Last name <span class="req">*</span></label><input id="ln" type="text" placeholder="e.g. Wanjiku"></div><div class="fl"><label>Gender <span class="req">*</span></label><select id="gen" required><option value="">Select gender</option><option value="Male">Male</option><option value="Female">Female</option></select></div></div><div id="sch-fields"><div class="form-section-label">School details</div><div class="fg"><div class="fl"><label>Class / Grade <span class="req">*</span></label><input id="cls" type="text" placeholder="e.g. Grade 9A"></div><div class="fl"><label>School name</label><input id="sch" type="text" placeholder="e.g. Westlands Secondary School"></div></div><div class="fg"><div class="fl"><label>County</label><input id="cty" type="text" placeholder="e.g. Nakuru"></div><div class="fl"><label>Date</label><input id="dt" type="date"></div></div></div><div id="pub-fields" style="display:none"><div class="form-section-label">Location details</div><div class="fg"><div class="fl"><label>Town / Village</label><input id="town" type="text" placeholder="Where you are based"></div><div class="fl"><label>County</label><input id="cty2" type="text" placeholder="e.g. Nakuru"></div></div><div class="fg"><div class="fl"><label>Date</label><input id="dt2" type="date"></div><div class="fl"></div></div></div><div class="warn-msg" id="profile-warn"></div><div class="btnrow"><button class="btn" onclick="goStep('s-consent');updateIndicator(2)">&larr; Back</button><button class="btn navy" onclick="proceedFromProfile()">Continue to inventory &nbsp;&rarr;</button></div></div></div><div class="step" id="s-items"><div class="prog-wrap"><div class="prog-top"><span class="prog-title">Your Progress</span><span class="prog-count" id="prog-count">0 of 42 answered</span></div><div class="prog-bar"><div class="prog-fill" id="pf" style="width:0%"></div></div><div class="prog-pct" id="prog-pct">0% complete</div></div><div class="items-intro"><div class="ii-title">The Interest Inventory</div><div class="ii-sub">Read each sentence carefully. Tap <strong style="color:var(--green)">YES</strong> if it sounds like you, or <strong style="color:var(--red)">NO</strong> if it does not. Answer <strong>all 42 sentences</strong> before tapping "See my results".</div></div><div id="ilist"></div><div class="warn-msg" id="warn-msg"></div><div class="btnrow"><button class="btn" onclick="goStep('s-profile');updateIndicator(3)">&larr; Back</button><button class="btn" id="findbtn" onclick="findUnanswered()" style="display:none;background:var(--yellow-pale);border-color:#C8A800;color:#5A4000">&#128269; Find missed items</button><button class="btn sky" id="rbtn" onclick="tryShowRes()">See my results &nbsp;&rarr;</button></div></div><div class="step" id="s-results"><div class="res-cover fade-up"><div class="res-cover-deco"></div><div class="res-cover-deco2"></div><div class="res-cover-top"><div class="res-cover-brand"><div class="res-cover-brand-dot">C</div><div class="res-cover-brand-text">CCGD Kenya &nbsp;&middot;&nbsp; Career &amp; Curriculum Guidance</div></div><div class="res-cover-badge">Grade 9 &amp; 10 Career Discovery Report</div></div><div class="res-cover-body"><div class="res-cover-eyebrow">My Career Discovery Report</div><div class="res-learner-name" id="res-name">—</div><div class="res-learner-sub" id="res-sub">—</div><div class="res-code-row" id="res-codes"></div><div class="res-meta-row" id="res-meta"></div></div><div class="res-cover-bottom"><p>This report is personal and confidential — for the learner, their parents or guardians, and their school counsellor only.</p><p>CCGD Kenya &copy; 2026</p></div></div><div class="card fade-up delay-1" id="res-intro-card"><p style="font-size:15px;line-height:1.85;color:var(--text2)" id="res-intro-text"></p></div><div class="sec-hdr fade-up delay-2"><div class="sec-num" id="s1-num" style="background:#3D9BE9">1</div><div><div class="sec-title">Your Top 3 Interest Types</div><div class="sec-sub" id="s1-sub">—</div></div></div><div class="top3-grid fade-up delay-3" id="top3-grid"></div><div class="score-card fade-up"><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gray-muted);margin-bottom:16px">All 6 RIASEC factors</div><div id="all6"></div></div><div class="sec-hdr fade-up"><div class="sec-num" style="background:#F7A325">2</div><div><div class="sec-title">Your Natural Competencies</div><div class="sec-sub">Plain-language strengths drawn from your interest profile — aligned to Kenya's CBE competency framework</div></div></div><div class="comp-hero fade-up"><h3>What you are naturally good at</h3><p>Based on your interest profile, here are the competencies — natural strengths and abilities — that you already have. These connect directly to Kenya's CBE competency framework and the qualities employers and universities look for.</p></div><div class="comp-grid fade-up delay-1" id="comp-grid"></div><div class="sec-hdr fade-up"><div class="sec-num" style="background:#2ECC71">3</div><div><div class="sec-title">Your CBE Pathway Guide</div><div class="sec-sub">Pathways shown from your strongest match to weakest — discuss with your teacher or counsellor before deciding</div></div></div><div id="pwcards" class="fade-up delay-1"></div><div id="subj-section" class="fade-up delay-2"></div><div id="certarea" class="fade-up"></div><div class="msg-box fade-up"><strong>A message from CCGD</strong><p>Remember: this inventory is a guide, not a final verdict. Your dedication, hard work, and character matter far more than any test result. Every CBE pathway leads to great and meaningful careers for young Kenyans. If you would like personal career guidance, we are here for you.</p><p style="margin-top:10px"><a href="https://www.careerguidancecollege.com/" target="_blank">www.careerguidancecollege.com</a> &nbsp;&middot;&nbsp; <a href="mailto:info@careerguidancecollege.com">info@careerguidancecollege.com</a> &nbsp;&middot;&nbsp; +254 743 822 925</p></div><div class="disclaimer"><strong style="color:var(--text2)">Important note for parents and educators:</strong> This report is based on the learner's self-reported interests at one point in time. It is designed to spark conversation and guide exploration — not to define or limit choices. Interests develop as young people grow. This report should be used alongside school performance data, teacher observation, and the learner's own evolving sense of purpose. Not a clinical or placement tool.
+ </div><div class="btnrow" style="margin-top:24px"><button class="btn navy" onclick="openPrintView()">&#128438; Save / Print my results</button></div></div></div><script>
+// ── DATA ──────────────────────────────────────────────────────────────────
+const items=[
+ {id:1,t:"R",tx:"I would enjoy learning how to fix things like bicycles, radios, or broken items at home."},
+ {id:2,t:"I",tx:"I would enjoy finding out why things happen in nature \u2014 like why it rains or how plants grow."},
+ {id:3,t:"S",tx:"I would enjoy helping a younger child in my school or community with their schoolwork."},
+ {id:4,t:"E",tx:"I would enjoy being chosen to lead a group or organise a class activity."},
+ {id:5,t:"A",tx:"I would enjoy activities that involve drawing, painting, or making things that look beautiful."},
+ {id:6,t:"C",tx:"I would enjoy keeping my schoolwork, notes, and timetable neat and well organised."},
+ {id:7,t:"I",tx:"I would enjoy spending time solving puzzles or tricky problems that require thinking."},
+ {id:8,t:"R",tx:"I would enjoy activities where I use my hands to build or make something useful."},
+ {id:9,t:"A",tx:"I would enjoy performing in front of others \u2014 singing, playing an instrument, or dancing."},
+ {id:10,t:"S",tx:"I would enjoy being the person a friend comes to when they need advice or support."},
+ {id:11,t:"C",tx:"I would enjoy activities that involve counting, recording numbers, or keeping accounts."},
+ {id:12,t:"E",tx:"I would enjoy trying to sell a product or persuade others to support a good idea."},
+ {id:13,t:"R",tx:"I would enjoy working on a farm \u2014 growing crops or looking after animals."},
+ {id:14,t:"I",tx:"I would enjoy doing more science experiments in school to discover how things work."},
+ {id:15,t:"S",tx:"I would enjoy working in a team to complete a project more than working alone."},
+ {id:16,t:"A",tx:"I would enjoy writing a story, a poem, or a creative composition of my own."},
+ {id:17,t:"E",tx:"I would enjoy planning and running an event like a school competition or a fundraiser."},
+ {id:18,t:"C",tx:"I would enjoy following a clear set of steps to complete a task the right way."},
+ {id:19,t:"I",tx:"I would enjoy reading books or watching programmes that explain how the world works."},
+ {id:20,t:"R",tx:"I would enjoy activities that involve using tools or operating machines."},
+ {id:21,t:"A",tx:"I would enjoy taking part in a school play, drama performance, or storytelling event."},
+ {id:22,t:"S",tx:"I would enjoy taking part in community activities such as clean-up drives or helping the elderly."},
+ {id:23,t:"C",tx:"I would enjoy work that involves filling in forms, making lists, or keeping records in order."},
+ {id:24,t:"E",tx:"I would enjoy taking part in a debate where I argue my point of view in front of others."},
+ {id:25,t:"I",tx:"I would enjoy carrying out an investigation to answer a question I am curious about."},
+ {id:26,t:"R",tx:"I would enjoy a job where I work outside rather than sitting in an office all day."},
+ {id:27,t:"A",tx:"I would enjoy a project where I am free to come up with my own creative ideas."},
+ {id:28,t:"S",tx:"I would enjoy teaching a skill I know \u2014 like cooking, farming, or a sport \u2014 to someone else."},
+ {id:29,t:"E",tx:"I would enjoy being the person who makes decisions and gets things moving in a group."},
+ {id:30,t:"C",tx:"I would enjoy a job where I know exactly what I am supposed to do each day."},
+ {id:31,t:"I",tx:"I would enjoy working through a difficult maths problem step by step until I find the answer."},
+ {id:32,t:"R",tx:"I would enjoy taking apart a machine or device to find out how it works."},
+ {id:33,t:"S",tx:"I would enjoy an activity where I get to meet and talk with many different people."},
+ {id:34,t:"A",tx:"I would enjoy designing a poster, decorating a space, or making something look attractive."},
+ {id:35,t:"E",tx:"I would enjoy starting a small business \u2014 like selling snacks, crafts, or farm produce."},
+ {id:36,t:"C",tx:"I would enjoy using a computer or mobile phone to organise and store important information."},
+ {id:37,t:"I",tx:"I would enjoy a class where I get to research a topic and present what I have discovered."},
+ {id:38,t:"R",tx:"I would enjoy practical work more than sitting and reading about how things are done."},
+ {id:39,t:"A",tx:"I would enjoy activities that allow me to express how I feel through art, music, or movement."},
+ {id:40,t:"S",tx:"I would enjoy volunteering to help improve life in my village or neighbourhood."},
+ {id:41,t:"E",tx:"I would enjoy speaking on behalf of my classmates or community at a school event."},
+ {id:42,t:"C",tx:"I would enjoy going through my work carefully at the end to check that everything is correct."}
+];
+const tinfo={
+ R:{lb:"Realistic",sb:"Practical",cl:"#1B3A6B",lc:"#DEEAF1",ri:["#E84855","#E84855"]},
+ I:{lb:"Investigative",sb:"Thinking",cl:"#3D9BE9",lc:"#E3F0FB",ri:["#3D9BE9","#3D9BE9"]},
+ A:{lb:"Artistic",sb:"Creative",cl:"#F7A325",lc:"#FBF0E3",ri:["#F7A325","#F7A325"]},
+ S:{lb:"Social",sb:"Helping",cl:"#2ECC71",lc:"#E3F5EC",ri:["#2ECC71","#2ECC71"]},
+ E:{lb:"Enterprising",sb:"Leading",cl:"#9B59B6",lc:"#F0E5FF",ri:["#9B59B6","#9B59B6"]},
+ C:{lb:"Conventional",sb:"Organised",cl:"#E67E22",lc:"#FEF0E3",ri:["#E67E22","#E67E22"]}
+};
+const pathways=[
+ {id:"STEM",lb:"STEM Pathway",cl:"#1B6CA8",hdr:"linear-gradient(135deg,#1B6CA8,#2B5BA8)",rbg:"#E3F0FB",rfg:"#1B6CA8",
+ types:["R","I","C"],desc:"Science, Technology, Engineering and Mathematics",
+ tracks:[
+ {n:"Pure Sciences",s:"Mathematics \u00b7 Advanced Chemistry \u00b7 Physics \u00b7 Biology",cl:"#1B6CA8"},
+ {n:"Applied Sciences",s:"General Science \u00b7 Agriculture \u00b7 Computer Studies \u00b7 Home Science \u00b7 Drawing and Design",cl:"#1B6CA8"},
+ {n:"Technical Studies",s:"Building Construction \u00b7 Electrical Technology \u00b7 Power Mechanics \u00b7 Metal Technology \u00b7 Wood Technology \u00b7 Aviation Technology \u00b7 Marine & Fisheries Technology \u00b7 Media Technology",cl:"#1B6CA8"}
+ ],ca:"Engineer, Doctor, Scientist, Pilot, ICT Specialist, Agronomist, Electrician, Pharmacist, Architect"},
+ {id:"SOCIAL",lb:"Social Sciences Pathway",cl:"#1A7A4A",hdr:"linear-gradient(135deg,#1A7A4A,#2A9A5A)",rbg:"#E3F5EC",rfg:"#1A7A4A",
+ types:["S","E"],desc:"Humanities, Languages and Business Studies",
+ tracks:[
+ {n:"Language and Literature",s:"English \u00b7 Kiswahili \u00b7 Literature in English \u00b7 Fasihi ya Kiswahili \u00b7 KSL \u00b7 French \u00b7 Arabic \u00b7 German \u00b7 Mandarin \u00b7 Indigenous Languages",cl:"#1A7A4A"},
+ {n:"Humanities and Business",s:"History and Citizenship \u00b7 Geography \u00b7 Business Studies \u00b7 CRE / IRE / HRE",cl:"#1A7A4A"}
+ ],ca:"Teacher, Lawyer, Journalist, Social Worker, Diplomat, Economist, Business Manager, Counsellor"},
+ {id:"ARTS",lb:"Arts and Sports Science Pathway",cl:"#B5530A",hdr:"linear-gradient(135deg,#B5530A,#D4741A)",rbg:"#FBF0E3",rfg:"#B5530A",
+ types:["A"],desc:"Creative Arts, Music, Theatre and Sports Science",
+ tracks:[
+ {n:"Arts",s:"Music and Dance \u00b7 Theatre and Film \u00b7 Fine Art",cl:"#B5530A"},
+ {n:"Sports Science",s:"Sports and Recreation \u00b7 Physical Education",cl:"#B5530A"}
+ ],ca:"Artist, Musician, Actor, Athlete, Sports Coach, Filmmaker, PE Teacher, Dancer, Designer"}
+];
+const competencies = {"R": ["You are naturally strong at working with your hands and making things.", "You have practical problem-solving ability — you figure things out by doing.", "You show strong spatial awareness and physical coordination.", "You are comfortable with tools, machines, and physical tasks.", "You demonstrate real-world, applied thinking."], "I": ["You are naturally strong at analytical thinking and learning new things.", "You show intellectual curiosity — you dig deep until you truly understand.", "You have strong research and investigation skills.", "You think logically and enjoy solving complex problems step by step.", "You demonstrate scientific and data-driven reasoning."], "A": ["You are naturally strong at creative thinking and original expression.", "You show imagination — you see possibilities others might miss.", "You have strong aesthetic sensibility and design awareness.", "You think in new and different ways rather than following a set path.", "You demonstrate expressive communication through art, writing, or performance."], "S": ["You are naturally strong at understanding and supporting other people.", "You show empathy — you genuinely care about how others feel.", "You have strong interpersonal and communication skills.", "You are a natural team player and community contributor.", "You demonstrate the ability to teach, guide, and inspire others."], "E": ["You are naturally strong at leading and motivating others.", "You show entrepreneurial thinking — you spot opportunities and act on them.", "You have strong persuasion and negotiation skills.", "You are decisive and comfortable making decisions under pressure.", "You demonstrate the ability to plan, organise, and get results."], "C": ["You are naturally strong at organising, planning, and managing details.", "You show precision and accuracy in everything you do.", "You have strong data management and record-keeping skills.", "You work systematically and follow through on tasks reliably.", "You demonstrate financial awareness and structured thinking."]};
+const subjectData = {"Mathematics":{"pathway":"STEM","track":"Pure Sciences","color":"#1B3A6B","emoji":"📐","what":"The study of numbers, shapes, patterns, and logic — from algebra and geometry to statistics and calculus. Core Maths covers essential skills; Advanced Maths goes deeper for engineering, medicine, and data science.","skills":["Logical and analytical thinking","Problem-solving and pattern recognition","Data interpretation and statistics","Financial literacy — budgets, interest, investment"],"careers":"Engineer, Actuary, Data Scientist, Accountant, Architect, Doctor, Programmer, Statistician","fact":"Kenya's M-Pesa mobile money system — used by millions every day — runs on complex mathematical algorithms built by engineers who started with..."},"Biology":{"pathway":"STEM","track":"Pure Sciences","color":"#1B3A6B","emoji":"🧬","what":"The study of living things — plants, animals, microorganisms, and the human body. You explore cells, growth, reproduction, disease, ecosystems, and genetics.","skills":["Scientific observation and lab skills","Understanding of health and the human body","Research and data analysis","Environmental and conservation awareness"],"careers":"Doctor, Nurse, Pharmacist, Vet, Agronomist, Environmental Scientist, Lab Technician, Public Health Officer","fact":"Scientists at KEMRI have contributed to breakthroughs in malaria and HIV treatment that have saved millions of lives across Africa."},"Chemistry":{"pathway":"STEM","track":"Pure Sciences","color":"#1B3A6B","emoji":"⚗️","what":"The study of matter — what things are made of and how they change. Covers atoms, molecules, reactions, acids and bases, organic chemistry, and industrial chemistry.","skills":["Lab skills — measuring, mixing, safe handling","Analytical thinking and problem-solving","Understanding of materials and properties","Precision and attention to safety"],"careers":"Chemical Engineer, Pharmacist, Food Scientist, Environmental Chemist, Lab Technologist, Petroleum Chemist, Materials Scientist","fact":"Kenya is the world's largest exporter of black tea — chemical engineers work in tea factories to ensure perfect flavour, colour, and quality."},"Physics":{"pathway":"STEM","track":"Pure Sciences","color":"#1B3A6B","emoji":"⚡","what":"The study of matter, energy, and forces — from atoms to galaxies. Covers mechanics, electricity, waves, light, thermodynamics, and modern physics.","skills":["Mathematical reasoning applied to real problems","Understanding of machines and technology","Experimental design and data interpretation","Spatial and mechanical thinking"],"careers":"Engineer, Architect, IT Specialist, Geophysicist, Radiographer, Renewable Energy Engineer, Pilot, Telecommunications Engineer","fact":"Kenya is a world leader in geothermal energy. Engineers at KenGen's Olkaria plant use physics every day to harness the earth's heat and power..."},"General Science":{"pathway":"STEM","track":"Applied Sciences","color":"#1B4F8A","emoji":"🔬","what":"Combines topics from Biology, Chemistry, and Physics into one integrated subject — covering health, basic chemistry in daily life, energy, the environment, and how technology connects to science.","skills":["Broad scientific literacy","Practical and hands-on problem solving","Understanding of health, environment, and technology","Connecting science to everyday Kenyan life"],"careers":"TVET Technician, Community Health Worker, Lab Assistant, Environmental Health Officer, Agricultural Extension Officer, Science Teacher","fact":"Science is everywhere — from the bread you bake (chemistry) to the phone signal you use (physics) to the crops your family grows (biology)."},"Agriculture":{"pathway":"STEM","track":"Applied Sciences","color":"#1B4F8A","emoji":"🌾","what":"The study of growing crops, rearing animals, managing soil and water, and running a farm as a business. Covers soil science, crop production, animal husbandry, and agricultural entrepreneurship.","skills":["Practical farming and animal care","Soil testing, irrigation, and crop management","Business planning and agri-entrepreneurship","Environmental stewardship and sustainable farming"],"careers":"Farmer & Agripreneur, Agricultural Extension Officer, Agronomist, Horticulturist, Vet Technician, Food Processing Manager, Irrigation Engineer","fact":"Kenya's flower industry is one of the largest in the world — Kenyan roses fill supermarkets across Europe every day, grown by agronomists who started..."},"Home Science":{"pathway":"STEM","track":"Applied Sciences","color":"#1B4F8A","emoji":"🏠","what":"Covers six branches: Home Care & Management, Food and Nutrition, Clothing and Textiles, Maternal and Child Care, Health Education, and Consumer Education.","skills":["Food preparation, nutrition, and food safety","Sewing, pattern-making, and textile design","Child development and family health","Consumer awareness and financial decision-making"],"careers":"Nutritionist, Chef, Fashion Designer, Early Childhood Educator, Interior Designer, Public Health Educator, Hospitality Manager","fact":"Nairobi's growing network of fashion designers and clothing brands — many who sell internationally — built their skills starting with Home Science."},"Computer Studies":{"pathway":"STEM","track":"Applied Sciences","color":"#1B4F8A","emoji":"💻","what":"How computers work, how to use them effectively, and how to write simple programmes. Covers hardware, software, word processing, spreadsheets, databases, internet, basic programming, and cybersecurity basics.","skills":["Computer operation and digital literacy","Basic programming and computational thinking","Data management using spreadsheets and databases","Internet research, digital communication, and online safety"],"careers":"Software Developer, IT Support, Data Analyst, Cybersecurity Specialist, Digital Marketer, Network Engineer, Computer Teacher","fact":"Kenya's Silicon Savannah — centred around Nairobi — is one of Africa's most vibrant tech ecosystems. Hundreds of Kenyan start-ups use products..."},"Drawing & Design":{"pathway":"STEM","track":"Applied Sciences","color":"#1B4F8A","emoji":"📏","what":"Communicating ideas through technical drawings, sketches, and plans. Covers freehand sketching, engineering drawing, design principles, blueprint reading, and CAD basics.","skills":["Technical drawing and blueprint reading","Freehand sketching and design thinking","Spatial awareness and 3D visualisation","Computer-aided design (CAD) basics"],"careers":"Architect, Civil Engineer, Interior Designer, Quantity Surveyor, Product Designer, Graphic Designer, Urban Planner","fact":"Every building you see — from your school to a Nairobi skyscraper — started as a drawing. Architects behind Kenya's iconic buildings all mastered..."},"Aviation Technology":{"pathway":"STEM","track":"Technical Studies","color":"#185A8D","emoji":"✈️","what":"The principles of flight, aircraft design and maintenance, airport operations, and aviation industry administration. Covers aerodynamics, aircraft systems, navigation, and safety regulations.","skills":["Understanding of aerodynamics and aircraft systems","Technical maintenance principles","Aviation safety and regulatory awareness","Navigation and instrument reading","Precision — aviation demands zero errors"],"careers":"Commercial Pilot, Aircraft Maintenance Engineer, Air Traffic Controller, Airport Operations Officer, Drone Operator, Aerospace Engineer, Cabin Crew","fact":"JKIA handles over 8 million passengers a year, and Kenya's drone technology sector is one of the most advanced in Africa — used for medical..."},"Building Construction":{"pathway":"STEM","track":"Technical Studies","color":"#185A8D","emoji":"🏗️","what":"Planning, building, and maintaining structures. Covers building materials, construction methods, site safety, masonry, carpentry, roofing, plumbing basics, and reading architectural plans.","skills":["Masonry, bricklaying, and plastering","Carpentry and joinery","Blueprint reading and site planning","Construction safety and management","Materials selection and quality control"],"careers":"Building Contractor, Site Foreman, Mason, Carpenter, Construction Manager, Quantity Surveyor, Building Inspector, Property Developer","fact":"Kenya's construction sector is one of the fastest growing in Sub-Saharan Africa. The Nairobi Expressway and hundreds of housing projects create..."},"Electrical Technology":{"pathway":"STEM","track":"Technical Studies","color":"#185A8D","emoji":"⚡","what":"How electricity works and how to safely install, maintain, and repair electrical systems. Covers circuits, wiring, motors, transformers, solar panel installation, and safety standards.","skills":["Safe use of electrical tools and equipment","Wiring, circuit installation, and fault-finding","Reading electrical diagrams","Understanding of solar and renewable energy systems"],"careers":"Electrical Technician, Electrical Engineer, Solar Energy Installer, Electronics Technician, Industrial Electrician, Automation Technician, Smart Home Installer","fact":"Kenya generates over 90% of its electricity from renewable sources — the electrical engineers who maintain this clean energy system are among the..."},"Power Mechanics":{"pathway":"STEM","track":"Technical Studies","color":"#185A8D","emoji":"🔧","what":"Internal combustion engines, vehicles, and mechanical power systems. Covers car, truck, and motorcycle engines; fuel, cooling, and lubrication systems; braking, suspension, and automotive electrical systems.","skills":["Engine diagnosis and repair","Use of mechanical tools and workshop equipment","Understanding of automotive systems","Fault-finding in mechanical systems","Health and safety in a workshop"],"careers":"Motor Vehicle Mechanic, Auto Technician, Automotive Electrician, Heavy Equipment Mechanic, Fleet Maintenance Manager, Garage Owner and Entrepreneur","fact":"Kenya has one of the largest vehicle fleets in East Africa, with millions of motorcycles, matatus, and trucks on the road. Skilled mechanics are..."},"Metal Technology":{"pathway":"STEM","track":"Technical Studies","color":"#185A8D","emoji":"🔩","what":"Working with metal to create structures, tools, and products. Covers metal cutting, filing, drilling, sheet metalwork, riveting, soldering, welding, and basic fabrication.","skills":["Welding, cutting, and fabrication","Precision measurement and marking out","Workshop safety and tool care","Reading engineering drawings"],"careers":"Welder and Fabricator, Metal Fabrication Technician, Structural Steel Specialist, Sheet Metal Worker, Industrial Machinist, Agricultural Equipment Manufacturer","fact":"Kenya's Jua Kali sector in Kamukunji, Nairobi is one of the largest informal manufacturing ecosystems in Africa — metal artisans create products sold..."},"Wood Technology":{"pathway":"STEM","track":"Technical Studies","color":"#185A8D","emoji":"🪵","what":"Working with wood to produce furniture, structures, and wooden products. Covers wood identification, hand and power tools, joinery, furniture making, and wood finishing.","skills":["Safe use of woodworking tools and machinery","Joinery, furniture making, and cabinetry","Wood finishing, staining, and polishing","Entrepreneurship in the furniture industry"],"careers":"Furniture Maker, Carpenter, Joiner, Timber Merchant, Pattern Maker, Woodcraft Artist, Furniture Entrepreneur and Designer","fact":"The East African furniture industry is growing rapidly as urbanisation creates demand for quality home furniture. Many Kenyan entrepreneurs started..."},"Media Technology":{"pathway":"STEM","track":"Technical Studies","color":"#185A8D","emoji":"🎬","what":"Technical skills for producing media content — video production, audio recording, photography, digital editing, broadcasting, and online content creation.","skills":["Video and audio production and editing","Photography and visual storytelling","Digital content creation for social media","Broadcasting and studio operation basics","Media ethics and responsible content"],"careers":"Video Producer, Film Editor, Broadcast Journalist, Photographer, Podcast Producer, YouTube Creator, Advertising Specialist, Documentary Filmmaker","fact":"Kenya has one of the most vibrant media industries in Africa — with dozens of TV stations and a rapidly growing digital content sector reaching..."},"Marine & Fisheries Technology":{"pathway":"STEM","track":"Technical Studies","color":"#185A8D","emoji":"🐟","what":"Careers in Kenya's vast water resources — Lake Victoria, Lake Turkana, and the 600km Indian Ocean coastline. Covers fish biology, fishing techniques, aquaculture, marine navigation, and ocean conservation.","skills":["Fish identification, handling, and processing","Aquaculture and fish farming techniques","Boat operation and marine navigation","Fish preservation and food safety","Environmental conservation of aquatic ecosystems"],"careers":"Fish Farmer, Fisheries Extension Officer, Marine Biologist, Fish Processing Technician, Marine Conservationist, Boat Captain, Blue Economy Entrepreneur","fact":"Lake Victoria supports the livelihoods of over 3 million fishers and fish traders. Kenya's fishing and aquaculture industry is worth billions of..."},"English":{"pathway":"Social Sciences","track":"Language & Literature","color":"#1A7A4A","emoji":"📝","what":"Advanced skills in reading comprehension, essay writing, formal and informal communication, grammar, oral presentation, and literary analysis. Advanced English prepares you for university-level academic writing.","skills":["Clear and persuasive written communication","Oral presentation and public speaking","Critical reading and literary analysis","Research, editing, and proofreading"],"careers":"Journalist, Lawyer, Teacher, PR Officer, Copywriter, Diplomat, Author, Speech Therapist","fact":"Ngugi wa Thiong'o — born in Limuru, Kenya — is considered one of the greatest living writers in the world and has been nominated for the Nobel Prize..."},"Kiswahili":{"pathway":"Social Sciences","track":"Language & Literature","color":"#1A7A4A","emoji":"🗣️","what":"Kenya's national language and one of the official languages of the African Union. Kiswahili Kipevu is an advanced level focusing on literature, linguistics, and formal academic Kiswahili.","skills":["Fluent spoken and written Kiswahili","Literary analysis of Kiswahili poetry and prose","Translation and interpretation skills","Cultural understanding of East African communities"],"careers":"Kiswahili Journalist, Broadcaster, Teacher, Sign Language Interpreter, Author, Government Communications Officer, Tourism Professional","fact":"Kiswahili is spoken by over 200 million people across East and Central Africa. The African Union adopted it as an official language in 2022 —..."},"Literature in English":{"pathway":"Social Sciences","track":"Language & Literature","color":"#1A7A4A","emoji":"📚","what":"Close study of novels, plays, poetry, and short stories — both African and global. Develops critical analysis, interpretation, empathy, and a personal voice in literary writing.","skills":["Close reading and textual analysis","Critical argument and essay writing","Empathy and understanding of diverse human experiences","Cultural and historical awareness"],"careers":"Teacher, Author, Publisher, Film & Script Writer, Cultural Diplomat, Journalist, Librarian, Museum Curator","fact":"East Africa has produced world-famous writers including Ngugi wa Thiong'o, Grace Ogot, and Francis Imbuga. Literature connects you to a rich..."},"Fasihi ya Kiswahili":{"pathway":"Social Sciences","track":"Language & Literature","color":"#1A7A4A","emoji":"📖","what":"The study of Kiswahili literature — poetry (mashairi), prose fiction (riwaya), drama (tamthilia), and oral literature. Deepens Kiswahili language skills and connects you to East African literary heritage.","skills":["Literary analysis in Kiswahili","Understanding of East African oral and written traditions","Advanced written and spoken Kiswahili","Creative expression in Kiswahili"],"careers":"Kiswahili Teacher, Author, Broadcaster, Translator, Cultural Officer, Script Writer, African Union Language Officer","fact":"Shairi za Muyaka bin Haji — 19th century poems from the Kenya coast — are still studied today as masterpieces of poetic craft. Fasihi connects you to..."},"French":{"pathway":"Social Sciences","track":"Language & Literature","color":"#1A7A4A","emoji":"🇫🇷","what":"Spoken by over 300 million people worldwide, including in 22 African countries. An official UN and African Union language, opening doors to diplomacy, international business, and NGO work.","skills":["Reading, writing, speaking, and listening in French","Cross-cultural communication","Translation and interpretation","Understanding of Francophone African contexts"],"careers":"Diplomat, International NGO Worker, Translator, French Teacher, International Business Professional, Tour Guide, UN/AU Staff","fact":"Kenya borders three Francophone countries — DRC, Rwanda, and Burundi. French speakers have a major business advantage in the East African Community..."},"German":{"pathway":"Social Sciences","track":"Language & Literature","color":"#1A7A4A","emoji":"🇩🇪","what":"The most widely spoken native language in Europe and second most used scientific language in the world. Especially valued in engineering, automotive, pharmaceuticals, and tourism sectors.","skills":["Reading, writing, speaking, and listening in German","Technical and scientific German vocabulary","Understanding of German and European business culture","Translation and interpretation"],"careers":"German Teacher, Translator, International Business Professional, Diplomat, Tourism Professional, Researcher, GIZ Programme Officer","fact":"Germany is Kenya's fifth largest bilateral development partner, investing billions of shillings in infrastructure and education. German-speaking..."},"Arabic":{"pathway":"Social Sciences","track":"Language & Literature","color":"#1A7A4A","emoji":"🌙","what":"One of six official UN languages, spoken by over 420 million people. Deep historical and cultural roots in coastal Kenya through centuries of Indian Ocean trade.","skills":["Reading and writing in Arabic script","Spoken Modern Standard Arabic","Understanding of Islamic and Arab cultural contexts","Translation and interpretation"],"careers":"Arabic Teacher, Translator, Diplomat, Islamic Finance Professional, UN/Arab League Staff, Tourism Guide, Archaeologist and Historian","fact":"The Kiswahili language has borrowed thousands of words from Arabic through Indian Ocean trade. Words like shule, daftari, and soko all have Arabic..."},"Mandarin Chinese":{"pathway":"Social Sciences","track":"Language & Literature","color":"#1A7A4A","emoji":"🀄","what":"Spoken by over 1 billion people and the official language of China — Kenya's largest trading partner. Opens major career opportunities in trade, diplomacy, construction, and manufacturing.","skills":["Basic to intermediate Mandarin reading, writing, and speaking","Understanding of Chinese business culture","Translation and interpretation","Cross-cultural business communication"],"careers":"Business Interpreter, Diplomat, International Trade Professional, Mandarin Teacher, Tourism Professional, SGR/Infrastructure Liaison Officer","fact":"The SGR connecting Nairobi to Mombasa was built by a Chinese company. Kenyans who speak Mandarin have worked as interpreters and business..."},"Indigenous Languages":{"pathway":"Social Sciences","track":"Language & Literature","color":"#1A7A4A","emoji":"🌍","what":"Study and develop proficiency in your community's mother tongue — whether Gikuyu, Dholuo, Luhya, Kamba, Kalenjin, Somali, Maa, or others. Preserves Kenya's linguistic heritage.","skills":["Reading, writing, and speaking in a Kenyan indigenous language","Understanding of oral literature and traditions","Cultural research and documentation","Community engagement and communication"],"careers":"Language Teacher, Linguist, Cultural Officer, Vernacular Broadcaster, Translator for Courts and Local Government, Oral History Researcher","fact":"Kenya's National Museums hold some of Africa's most important oral history archives. Learners who study their mother tongue are joining a vital..."},"Geography":{"pathway":"Social Sciences","track":"Humanities & Business Studies","color":"#2E7D32","emoji":"🗺️","what":"The study of the earth's physical features and how humans interact with their environment. Covers physical geography, human geography, and environmental geography — especially relevant in Kenya's diverse landscape.","skills":["Map reading, GIS basics, and spatial thinking","Environmental analysis and conservation awareness","Research, data collection, and fieldwork","Urban and rural planning awareness"],"careers":"Geographer, Urban Planner, Meteorologist, Surveyor, Environmental Officer at NEMA, Geologist, Tourism Manager, GIS Specialist","fact":"Kenya sits astride the Great Rift Valley — one of the earth's most dramatic geological features. The geothermal energy at Olkaria comes directly from..."},"History & Citizenship":{"pathway":"Social Sciences","track":"Humanities & Business Studies","color":"#2E7D32","emoji":"🏛️","what":"The story of human societies — how Kenya, Africa, and the world have changed over time, and how governments and citizens work together. Covers pre-colonial history, independence, and civic education.","skills":["Historical research, analysis, and critical evaluation","Understanding of government, law, and civic processes","Argument construction and essay writing","Leadership and civic participation"],"careers":"Lawyer, Diplomat, Historian, Politician, Museum Curator, Journalist, Human Rights Worker, Teacher of History","fact":"Kenya's independence in 1963 was the result of decades of political organisation by leaders including Jomo Kenyatta, Oginga Odinga, and Tom Mboya —..."},"Religious Education (CRE/IRE/HRE)":{"pathway":"Social Sciences","track":"Humanities & Business Studies","color":"#2E7D32","emoji":"✝️","what":"Offered in three streams: Christian (CRE), Islamic (IRE), and Hindu (HRE). Develops moral and ethical values, promotes peaceful coexistence, and helps learners understand the role of faith in human life.","skills":["Ethical reasoning and moral decision-making","Understanding of diverse religious traditions","Empathy, respect, and intercultural dialogue","Community service and social responsibility"],"careers":"Theologian, Religious Leader, Chaplain, Counsellor, Social Worker, Religious Education Teacher, Human Rights Professional, Peace-Building Researcher","fact":"Kenya is recognised globally as a model of peaceful religious coexistence, with Christians, Muslims, Hindus, and followers of indigenous religions..."},"Business Studies":{"pathway":"Social Sciences","track":"Humanities & Business Studies","color":"#2E7D32","emoji":"💼","what":"How the world of commerce works — from corner shops to multinational corporations. Covers business formation, marketing, entrepreneurship, accounting, HR management, and the role of government in the economy.","skills":["Entrepreneurship and business planning","Basic accounting, bookkeeping, and financial management","Marketing, sales, and customer relations","Communication and negotiation"],"careers":"Entrepreneur, Accountant, Marketing Manager, HR Officer, Banker, Supply Chain Manager, Business Development Officer, Economist","fact":"Kenya's informal sector — millions of small businesses and market traders — contributes nearly 34% of GDP. Business Studies gives you the knowledge..."},"Music & Dance":{"pathway":"Arts & Sports Science","track":"Arts","color":"#7B3F00","emoji":"🎵","what":"Theory and practice of music — notation, playing instruments, singing, composing, and music history across African and global traditions. Dance covers traditional Kenyan forms, contemporary dance, and choreography.","skills":["Music theory, notation, and composition","Instrumental performance and vocal skills","Choreography and dance performance","Understanding of African and global musical traditions"],"careers":"Professional Musician, Music Teacher, Choreographer, Music Producer, Sound Engineer, Cultural Events Organiser, Music Therapist, Choir Director","fact":"Kenya's music industry — from benga and taarab to Afropop and gospel — generates billions of shillings annually. Artists like Sauti Sol and Eric..."},"Theatre & Film":{"pathway":"Arts & Sports Science","track":"Arts","color":"#7B3F00","emoji":"🎭","what":"Both live performance (theatre, drama, stage production) and filmmaking (screenwriting, directing, cinematography, editing, and production). Kenya's film industry is growing rapidly.","skills":["Acting, voice, and physical performance","Scriptwriting and storytelling","Stage management and technical theatre","Film production — directing, cinematography, and editing"],"careers":"Actor, Film Director, Producer, Screenwriter, Cinematographer, Theatre Director, Costume Designer, Film Educator, Arts Administrator","fact":"Kenya's film industry is booming — productions such as Supa Modo, Disconnect, and Binti have won international awards and are shown at festivals..."},"Fine Art":{"pathway":"Arts & Sports Science","track":"Arts","color":"#7B3F00","emoji":"🎨","what":"Expressing ideas, emotions, and stories through visual media — drawing, painting, sculpture, printmaking, and mixed media. Covers art history (African and global) and develops your unique artistic voice.","skills":["Drawing and painting in multiple media","Sculpture, printmaking, and mixed media","Colour theory, composition, and design principles","Art history and critical analysis","Portfolio development"],"careers":"Visual Artist, Graphic Designer, Art Teacher, Art Director, Product Designer, Animation Artist, Curator, Set Designer","fact":"The Kuona Trust in Nairobi supports dozens of professional Kenyan artists. Kenyan contemporary art is increasingly collected internationally — works..."},"Sports & Recreation":{"pathway":"Arts & Sports Science","track":"Sports Science","color":"#B5651D","emoji":"🏃","what":"Theory and practice of sport at a higher level. Covers sports science — anatomy, physiology, nutrition, training principles, injury prevention, sports psychology, and sports administration.","skills":["Understanding of human anatomy and sports physiology","Sports coaching and training programme design","Sports psychology and mental performance","Sports nutrition and injury prevention","Sports administration and event management"],"careers":"Athletics Coach, Sports Nutritionist, Sports Manager, Fitness Trainer, Sports Therapist, Recreation Manager, Sports Journalist, Sports Development Officer","fact":"Kenya is one of the greatest athletics nations in history. Behind every great Kenyan runner is a team of coaches, nutritionists, physiotherapists,..."},"Physical Education":{"pathway":"Arts & Sports Science","track":"Sports Science","color":"#B5651D","emoji":"⚽","what":"More than games — the scientific and pedagogical study of movement, fitness, and health. Covers fitness testing, curriculum planning, coaching methods, adaptive PE, and health promotion.","skills":["Physical fitness, coordination, and sports skills","Teaching and coaching methodology","Fitness assessment and training design","Health promotion and wellness education","Sports officiating and administration"],"careers":"PE Teacher, Sports Coach, Gym Instructor, Personal Trainer, Sports Official, Adaptive PE Specialist, Health Promotion Officer, University Lecturer in PE","fact":"Research shows that schools with strong PE programmes have better academic performance, lower dropout rates, and healthier learners. PE teachers are..."}};
+const pathwaySubjects={
+ "STEM":["Mathematics","Biology","Chemistry","Physics","General Science","Agriculture","Home Science","Computer Studies","Drawing & Design","Aviation Technology","Building Construction","Electrical Technology","Power Mechanics","Metal Technology","Wood Technology","Media Technology","Marine & Fisheries Technology"],
+ "Social Sciences":["English","Kiswahili","Literature in English","Fasihi ya Kiswahili","French","German","Arabic","Mandarin Chinese","Indigenous Languages","Geography","History & Citizenship","Religious Education (CRE/IRE/HRE)","Business Studies"],
+ "Arts & Sports Science":["Music & Dance","Theatre & Film","Fine Art","Sports & Recreation","Physical Education"]
+};
+const ans={};
+let mode="school";
+let consentGiven=false;
+// ── STEP INDICATOR ────────────────────────────────────────────────────────
+function updateIndicator(active){
+ for(let i=1;i<=5;i++){
+ const dot=document.getElementById("si"+i);
+ const line=document.getElementById("sl"+i);
+ if(i<active){dot.className="si-dot done";dot.textContent="✓";if(line)line.className="si-line done";}
+ else if(i===active){dot.className="si-dot active";dot.textContent=i;if(line)line.className="si-line";}
+ else{dot.className="si-dot pending";dot.textContent=i;if(line)line.className="si-line";}
+ }
+}
+// ── NAVIGATION ────────────────────────────────────────────────────────────
+function goStep(id){
+ document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ try{window.scrollTo({top:0,behavior:"smooth"});}catch(e){}
+ try{window.top.scrollTo({top:0,behavior:"smooth"});}catch(e){}
+ try{window.parent.scrollTo({top:0,behavior:"smooth"});}catch(e){}
+ document.body.scrollTop=0;
+ document.documentElement.scrollTop=0;
+ setTimeout(postHeight,300);
+}
+// ── CONSENT ───────────────────────────────────────────────────────────────
+function toggleConsent(){
+ consentGiven=!consentGiven;
+ const box=document.getElementById("consent-box");
+ box.classList.toggle("checked",consentGiven);
+ document.getElementById("consent-warn").style.display="none";
+}
+function proceedFromConsent(){
+ if(!consentGiven){
+ document.getElementById("consent-warn").style.display="block";
+ document.getElementById("consent-warn").scrollIntoView({behavior:"smooth",block:"center"});
+ return;
+ }
+ goStep("s-profile");updateIndicator(3);
+}
+// ── MODE TOGGLE ───────────────────────────────────────────────────────────
+function setMode(m){
+ mode=m;
+ document.getElementById("m-school").classList.toggle("on",m==="school");
+ document.getElementById("m-public").classList.toggle("on",m==="public");
+ document.getElementById("sch-fields").style.display=m==="school"?"block":"none";
+ document.getElementById("pub-fields").style.display=m==="public"?"block":"none";
+}
+// ── PROFILE VALIDATION ────────────────────────────────────────────────────
+function proceedFromProfile(){
+ const fn=document.getElementById("fn").value.trim();
+ const ln=document.getElementById("ln").value.trim();
+ const gen=document.getElementById("gen").value;
+ const pw=document.getElementById("profile-warn");
+ if(!fn||!ln){pw.style.display="block";pw.innerHTML="<strong>Please enter your first and last name.</strong>";pw.scrollIntoView({behavior:"smooth",block:"center"});return;}
+ if(!gen){pw.style.display="block";pw.innerHTML="<strong>Please select your gender.</strong>";pw.scrollIntoView({behavior:"smooth",block:"center"});return;}
+ pw.style.display="none";
+ try{gtag('event','inventory_started',{event_category:'CCGD_Assessment',event_label:'Grade 9-10 CBE'});}catch(e){}
+ buildItems();goStep("s-items");updateIndicator(4);
+}
+// ── BUILD ITEMS ───────────────────────────────────────────────────────────
+function buildItems(){
+ const list=document.getElementById("ilist");list.innerHTML="";
+ items.forEach(item=>{
+ const d=document.createElement("div");
+ d.className="icard"+(ans[item.id]!==undefined?" done":"");
+ d.id="ic"+item.id;
+ d.innerHTML="<div class=\"inum\">"+item.id+"</div><div class=\"itext\">"+item.tx+"</div><div class=\"ynw\"><button class=\"yn yes"+(ans[item.id]===true?" on":"")+"\" onclick=\"pick("+item.id+",true)\">YES</button><button class=\"yn no"+(ans[item.id]===false?" on":"")+"\" onclick=\"pick("+item.id+",false)\">NO</button></div>";
+ list.appendChild(d);
+ });
+}
+// ── ANSWER ────────────────────────────────────────────────────────────────
+function pick(id,val){
+ ans[id]=val;
+ const c=document.getElementById("ic"+id);
+ if(c){c.classList.add("done");c.classList.remove("missed");c.querySelectorAll(".yn").forEach(b=>b.classList.remove("on"));c.querySelector(".yn."+(val?"yes":"no")).classList.add("on");}
+ const n=Object.keys(ans).length;const pct=Math.round((n/42)*100);
+ document.getElementById("pf").style.width=pct+"%";
+ document.getElementById("prog-count").textContent=n+" of 42 answered";
+ document.getElementById("prog-pct").textContent=pct+"% complete";
+ document.getElementById("findbtn").style.display=n>0&&n<42?"inline-flex":"none";
+ if(n>=42){document.getElementById("warn-msg").style.display="none";document.getElementById("findbtn").style.display="none";}
+ postHeight();
+}
+function tryShowRes(){
+ const missing=items.filter(i=>ans[i.id]===undefined);
+ if(missing.length===0){showRes();return;}
+ const nums=missing.map(i=>i.id).join(", ");
+ const w=document.getElementById("warn-msg");w.style.display="block";
+ w.innerHTML="<strong>Almost there!</strong> You have answered <strong>"+(42-missing.length)+" of 42</strong>. Please answer the remaining <strong>"+missing.length+"</strong> before viewing your results.<br><span style='font-size:12px;margin-top:4px;display:block'>Unanswered items: <strong>"+nums+"</strong></span>";
+ const first=document.getElementById("ic"+missing[0].id);
+ if(first){first.scrollIntoView({behavior:"smooth",block:"center"});first.classList.add("missed");setTimeout(()=>first.classList.remove("missed"),3000);}
+ postHeight();
+}
+function findUnanswered(){
+ const missing=items.filter(i=>ans[i.id]===undefined);if(!missing.length){showRes();return;}
+ missing.forEach(item=>{const el=document.getElementById("ic"+item.id);if(el){el.classList.add("missed");setTimeout(()=>el.classList.remove("missed"),4000);}});
+ document.getElementById("ic"+missing[0].id)?.scrollIntoView({behavior:"smooth",block:"center"});
+}
+// ── SCORES ────────────────────────────────────────────────────────────────
+function calcScores(){const s={R:0,I:0,A:0,S:0,E:0,C:0};items.forEach(i=>{if(ans[i.id]===true)s[i.t]++;});return s;}
+function pwScore(pw,s){return pw.types.reduce((a,t)=>a+(s[t]||0),0);}
+// ── SHOW RESULTS ──────────────────────────────────────────────────────────
+function showRes(){
+ const sc=calcScores();
+ const fn=document.getElementById("fn").value||"Learner";
+ const ln=document.getElementById("ln").value||"";
+ const name=fn+(ln?" "+ln:"");
+ const gender=document.getElementById("gen").value||"";
+ const school=mode==="school"?(document.getElementById("sch").value||""):(document.getElementById("town").value||"");
+ const cls=document.getElementById("cls")?document.getElementById("cls").value||"":"";
+ const cty=mode==="school"?(document.getElementById("cty").value||""):(document.getElementById("cty2").value||"");
+ const dt=mode==="school"?document.getElementById("dt").value:document.getElementById("dt2").value;
+ const dateStr=dt?new Date(dt).toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"}):new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"});
+ const order=["R","I","A","S","E","C"].sort((a,b)=>sc[b]-sc[a]);
+ const top3=order.filter(t=>sc[t]>0).slice(0,3);
+ // Cover
+ document.getElementById("res-name").textContent=name;
+ const subParts=[];if(cls)subParts.push(cls);if(school)subParts.push(school);if(cty)subParts.push(cty);
+ document.getElementById("res-sub").textContent=subParts.join(" \u00b7 ")||"Kenya CBE Learner";
+ // Code pills
+ const codeRow=document.getElementById("res-codes");codeRow.innerHTML="";
+ top3.forEach(t=>{
+ const inf=tinfo[t];
+ codeRow.innerHTML+="<div class=\"res-code-pill\" style=\"background:"+inf.cl+"\"><span class=\"res-code-letter\">"+t+"</span><span class=\"res-code-label\">"+inf.lb+"</span></div>";
+ });
+ // Meta
+ document.getElementById("res-meta").innerHTML=" <div class=\"res-meta-item\"><span class=\"res-meta-label\">Assessment</span><span class=\"res-meta-value\">CCGD Interest Inventory</span></div><div class=\"res-meta-item\"><span class=\"res-meta-label\">Date taken</span><span class=\"res-meta-value\">"+dateStr+"</span></div><div class=\"res-meta-item\"><span class=\"res-meta-label\">Profile code</span><span class=\"res-meta-value\">"+top3.join(" \u00b7 ")||"—"+"</span></div>";
+ // Section 1 subtitle
+ document.getElementById("s1-sub").textContent="Your profile code is "+top3.join(" \u00b7 ")+" — scored out of 7";
+ document.getElementById("s1-num").style.background=top3.length?tinfo[top3[0]].cl:"#3D9BE9";
+ // Intro card
+ document.getElementById("res-intro-text").innerHTML="Welcome, <strong>"+fn+"!</strong> This is your personal <strong>Career Discovery Map</strong> — built from your responses to the CCGD Interest Inventory. There are no right or wrong answers and no good or bad profile. Your results show where your natural interests point, help you choose the right <strong>CBE pathway and subjects</strong> for Senior School, and open up <strong>career possibilities</strong> that could be a great fit for you. Use this to have conversations with your parents, teachers, and career counsellor.";
+ // Top 3 cards
+ const t3g=document.getElementById("top3-grid");t3g.innerHTML="";
+ const ranks=["#1","#2","#3"];
+ top3.forEach((t,i)=>{
+ const inf=tinfo[t];const pct=Math.round((sc[t]/7)*100);
+ const descs={
+ R:"You love practical, hands-on work. You are energised when you are building, fixing, or working outdoors with tools and your hands.",
+ I:"You love learning, researching, and asking why. You dig deep into subjects and are most energised when solving complex problems or discovering how something works.",
+ A:"You have a creative and expressive nature. You are most engaged when you can imagine freely, create something original, or perform for an audience.",
+ S:"You are people-oriented and caring. You are most energised when you are helping, teaching, or working with others to make a difference.",
+ E:"You are a natural leader and go-getter. You are most energised when you are persuading, organising, or driving a team towards a goal.",
+ C:"You are precise, reliable, and organised. You are most energised when working with data, keeping order, or following a structured system."
+ };
+ t3g.innerHTML+=" <div class=\"top3-card\" style=\"border-top:4px solid "+inf.cl+"\"><div style=\"display:flex;align-items:center;gap:10px\"><div class=\"top3-letter\" style=\"background:"+inf.cl+"\">"+t+"</div><div><div style=\"font-size:16px;font-weight:700\">"+inf.lb+"</div><div style=\"font-size:11px;color:var(--gray-muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em\">"+ranks[i]+" \\u00b7 "+inf.sb+"</div></div></div><div class=\"top3-score\" style=\"color:"+inf.cl+"\">"+sc[t]+"<span> / 7</span></div><div class=\"bar-track\"><div class=\"bar-fill\" style=\"width:"+pct+"%;background:"+inf.cl+"\"></div></div><div style=\"font-size:13px;color:var(--text2);line-height:1.65\">"+descs[t]||""+"</div></div>";
+ });
+ // All 6 factors
+ const a6=document.getElementById("all6");a6.innerHTML="";
+ order.forEach((t,i)=>{
+ const inf=tinfo[t];const pct=Math.round((sc[t]/7)*100);
+ a6.innerHTML+=" <div class=\"factor-row\"><div class=\"factor-dot\" style=\"background:"+inf.cl+"\">"+t+"</div><div><div class=\"factor-name\" style=\"color:"+inf.cl+"\">"+inf.lb+"</div><div class=\"factor-sub\">"+inf.sb+"</div></div><div class=\"factor-bar\"><div class=\"factor-bar-fill\" style=\"width:"+pct+"%;background:"+inf.cl+"\"></div></div><div class=\"factor-score\" style=\"color:"+inf.cl+"\">"+sc[t]+"</div> ${i<3?"<span class="top-badge" style="background:${inf.lc};color:${inf.cl}">Top 3</span>":"<span class="top-badge" style="opacity:0">—</span>"} </div>";
+ });
+ // Competencies
+ const cg=document.getElementById("comp-grid");cg.innerHTML="";
+ top3.forEach(t=>{
+ const inf=tinfo[t];const comps=competencies[t]||[];
+ cg.innerHTML+=" <div class=\"comp-card\" style=\"border-top-color:"+inf.cl+"\"><div class=\"comp-label\" style=\"color:"+inf.cl+"\"><span style=\"width:20px;height:20px;border-radius:6px;background:"+inf.cl+";color:white;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800\">"+t+"</span>"+inf.lb+"</div> ${comps.map(c=>"<div class="comp-item"><span class="comp-dot" style="background:${inf.cl}"></span><span>${c}</span></div>").join(\"\")} </div>";
+ });
+ // Pathways
+ const pws=pathways.map(pw=>({...pw,sc:pwScore(pw,sc)})).sort((a,b)=>b.sc-a.sc);
+ const pc=document.getElementById("pwcards");pc.innerHTML="";
+ const rlabs=["Strongest match","Second match","Third match"];
+ pws.forEach((pw,i)=>{
+ const mx=pw.types.reduce((s)=>s+7,0);
+ const tr=pw.tracks.map(t=>"<div class=\"pw-track\" style=\"border-left-color:"+t.cl+"\"><div class=\"pw-track-name\">"+t.n+"</div><div class=\"pw-track-subjects\">"+t.s+"</div></div>").join("");
+ pc.innerHTML+=" <div class=\"pw-card"+(i===0?" top-match":"")+"\"><div class=\"pw-card-hdr\" style=\"background:"+pw.hdr+"\"><span class=\"pw-rank-badge\" style=\"background:rgba(255,255,255,.18);color:white\">"+rlabs[i]+"</span><span class=\"pw-score\" style=\"color:rgba(255,255,255,.8)\">"+pw.sc+"/"+mx+" pts</span></div><div class=\"pw-card-body\"><div class=\"pw-title\" style=\"color:"+pw.cl+"\">"+pw.lb+"</div><div class=\"pw-desc\">"+pw.desc+"</div> "+tr+" <div class=\"pw-careers\"><strong>Possible careers:</strong> "+pw.ca+"</div></div></div>";
+ });
+ // Subject descriptors — all 3 pathways with tabs
+ const ss=document.getElementById("subj-section");
+ const pwKeys=["STEM","Social Sciences","Arts & Sports Science"];
+ const pwTabLabels=pws.map(pw=>pw.id==="STEM"?"STEM":pw.id==="SOCIAL"?"Social Sciences":"Arts & Sports");
+ const pwColors=pws.map(pw=>pw.cl);
+ // Build tab HTML
+ let tabsHTML="<div class=\"subj-sec-title\">&#128218; Subject Guide — All Pathways</div><p class=\"subj-sec-sub\">Your top pathway is shown first. Tap any tab to explore subjects in all three CBE pathways and find the subjects that excite you most.</p><div class=\"subj-tabs\" id=\"subj-tabs\">";
+ pws.forEach((pw,i)=>{
+ const key=pw.id==="STEM"?"STEM":pw.id==="SOCIAL"?"Social Sciences":"Arts & Sports Science";
+ tabsHTML+="<button class=\"subj-tab"+(i===0?" active":"")+"\" onclick=\"showSubjTab("+i+")\" style=\""+(i===0?"border-color:"+pw.cl+";color:"+pw.cl+";background:"+pw.rbg:"")+"\"> "+(i===0?"&#11088; ":"")+""+pwTabLabels[i]+""+(i===0?" <span style=\"font-size:10px;background:${pw.cl};color:white;padding:2px 7px;border-radius:10px;margin-left:4px">Top match</span>":\"\"} </button>";
+ });
+ tabsHTML+="</div>";
+ // Build content panels
+ pws.forEach((pw,i)=>{
+ const key=pw.id==="STEM"?"STEM":pw.id==="SOCIAL"?"Social Sciences":"Arts & Sports Science";
+ const sl=pathwaySubjects[key]||[];
+ tabsHTML+="<div class=\"subj-panel\" id=\"subj-panel-"+i+"\" style=\"display:"+(i===0?"block":"none")+"\">";
+ sl.forEach(name=>{
+ const s=subjectData[name];if(!s){return;}
+ const skillsHTML=s.skills.map(sk=>"<li>"+sk+"</li>").join("");
+ tabsHTML+="<div class=\"subj-card\"><div class=\"subj-hdr\" style=\"background:"+s.color+"\"><div class=\"subj-emoji\">"+s.emoji+"</div><div><div class=\"subj-title-text\">"+name+"</div><div class=\"subj-track-text\">"+s.track+"</div></div></div><div class=\"subj-body\"><div class=\"subj-col\"><div class=\"subj-col-label\">What is it?</div><div class=\"subj-col-text\">"+s.what+"</div><div style=\"margin-top:14px\"><div class=\"subj-col-label\">Skills you will build</div><ul>"+skillsHTML+"</ul></div></div><div class=\"subj-col\"><div class=\"subj-col-label\">Career paths</div><div class=\"subj-col-text\">"+s.careers+"</div></div></div><div class=\"subj-fact\">&#128161; "+s.fact+"</div></div>";
+ });
+ tabsHTML+="</div>";
+ });
+ ss.innerHTML=tabsHTML;
+ // Certificate
+ document.getElementById("certarea").innerHTML=" <div class=\"cert fade-up\"><div class=\"cert-stripe\"></div><div class=\"cert-eyebrow\">CCGD Career Guidance Assessment Certificate</div><div class=\"cert-h\">This certifies that</div><div class=\"cert-name\">"+name+"</div><p style=\"font-size:13px;color:var(--gray-text);margin-bottom:6px\">"+school?school+" &nbsp;&middot;&nbsp; ":""+""+dateStr+""+gender?" &nbsp;&middot;&nbsp; "+gender:""+"</p><p style=\"font-size:13px;color:var(--gray-text);margin-bottom:14px\">has completed the CCGD RIASEC Interest Inventory and received the following interest code:</p><div class=\"cert-codes\">${top3.map(t=>"<div class="res-code-pill" style="background:${tinfo[t].cl};width:64px;height:64px"><span style="font-size:26px;font-weight:800;color:white;line-height:1">${t}</span><span style="font-size:9px;font-weight:700;color:rgba(255,255,255,.75);text-transform:uppercase;letter-spacing:.04em">${tinfo[t].lb}</span></div>").join(\"\")}</div><div class=\"cert-pathway\">Recommended pathway: "+pws[0].lb+"</div><div class=\"cert-stripe\"></div><div class=\"cert-note\">College of Career Guidance &amp; Development &nbsp;|&nbsp; www.careerguidancecollege.com &nbsp;|&nbsp; +254 743 822 925<br>Based on Holland RIASEC Model &nbsp;&middot;&nbsp; Adapted for Kenya CBE Grade 9&ndash;10 &nbsp;&middot;&nbsp; Not a clinical or placement tool</div></div>";
+ try{gtag('event','inventory_completed',{event_category:'CCGD_Assessment',event_label:pws[0].lb,value:pws[0].sc});}catch(e){}
+ try{gtag('event','pathway_recommended',{event_category:'CBE_Pathway',event_label:pws[0].lb});}catch(e){}
+ goStep("s-results");updateIndicator(5);
+ setTimeout(()=>{
+ document.body.scrollTop=0;document.documentElement.scrollTop=0;
+ try{window.top.scrollTo({top:0,behavior:"smooth"});}catch(e){}
+ postHeight();
+ },200);
+}
+function restart(){Object.keys(ans).forEach(k=>delete ans[k]);consentGiven=false;document.getElementById("consent-box").classList.remove("checked");goStep("s-intro");updateIndicator(1);}
+function postHeight(){
+ const h=Math.max(document.body.scrollHeight,document.body.offsetHeight,document.documentElement.scrollHeight);
+ try{window.parent.postMessage({type:"resize",height:h},"*");}catch(e){}
+}
+postHeight();
+const ro=new ResizeObserver(postHeight);ro.observe(document.body);
+setInterval(postHeight,1000);
+// Set dates
+const today=new Date().toISOString().split("T")[0];
+document.getElementById("dt").value=today;
+document.getElementById("dt2").value=today;
+// ── Subject tab switcher ─────────────────────────────────────────────────
+function showSubjTab(idx){
+ const cols=[{cl:"#1B6CA8",rbg:"#E3F0FB"},{cl:"#1A7A4A",rbg:"#E3F5EC"},{cl:"#B5530A",rbg:"#FBF0E3"}];
+ document.querySelectorAll(".subj-tab").forEach((t,i)=>{
+ const on=i===idx;
+ t.classList.toggle("active",on);
+ t.style.borderColor=on?cols[i].cl:"";
+ t.style.color=on?cols[i].cl:"";
+ t.style.background=on?cols[i].rbg:"";
+ t.style.boxShadow=on?"0 4px 14px rgba(0,0,0,.1)":"";
+ const p=document.getElementById("subj-panel-"+i);
+ if(p)p.style.display=on?"block":"none";
+ });
+ postHeight();
+}
+// ── Open print view ──────────────────────────────────────────────────────
+function openPrintView(){
+ const el=document.getElementById("s-results");
+ if(!el){alert("Please complete the inventory to see your results.");return;}
+ const ss=Array.from(document.querySelectorAll("style")).map(s=>s.innerHTML).join("\n");
+ const blob=new Blob(["<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>CCGD Career Guidance Results</title><link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap\" rel=\"stylesheet\"><style>"+ss+"body{background:white!important;padding:24px;max-width:900px;margin:0 auto}.btnrow,.book-hero,.msg-box,.disclaimer{display:none!important}</style></head><body><div style=\"background:#1B3A6B;color:white;padding:14px 24px;border-radius:10px;margin-bottom:28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap\"><div><div style=\"font-size:15px;font-weight:700;margin-bottom:2px\">CCGD Career Guidance Assessment Results</div><div style=\"font-size:12px;opacity:.8\">To save as PDF: click Print below then choose Save as PDF</div></div><button onclick=\"window.print()\" style=\"background:#FFD700;color:#1B3A6B;border:none;padding:11px 28px;border-radius:8px;font-weight:700;cursor:pointer;font-size:14px\">Print / Save PDF</button></div>"+el.innerHTML+"</body></html>"],{type:"text/html;charset=utf-8"});
+ const url=URL.createObjectURL(blob);
+ const win=window.open(url,"_blank","noopener");
+ if(!win){
+ const a=document.createElement("a");
+ a.href=url;a.download="CCGD_Career_Results.html";
+ document.body.appendChild(a);a.click();
+ setTimeout(()=>{document.body.removeChild(a);URL.revokeObjectURL(url);},2000);
+ } else {
+ setTimeout(()=>URL.revokeObjectURL(url),15000);
+ }
+}
+</script>
+
+</div>
+<div class="ftr-bar"></div>
+<footer class="ftr">
+  <div class="ftr-name">College of Career Guidance &amp; Development (CCGD)</div>
+  <div class="ftr-tag">One Purpose. One Mission. One Dream.</div>
+  <div class="ftr-links">
+    <a href="https://www.careerguidancecollege.com/" target="_blank">www.careerguidancecollege.com</a> &nbsp;|&nbsp;
+    <a href="mailto:info@careerguidancecollege.com">info@careerguidancecollege.com</a> &nbsp;|&nbsp;
+    <a href="tel:+254743822925">+254 743 822 925</a>
+  </div>
+  <div class="ftr-copy">Based on Holland RIASEC Model (1959) &nbsp;&middot;&nbsp; Adapted for Kenya CBE Senior School Grade 9&ndash;10 &nbsp;&middot;&nbsp; &copy; CCGD Kenya 2026</div>
+</footer>
+</body>
+</html>
